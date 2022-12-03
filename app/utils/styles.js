@@ -29,7 +29,7 @@ export const styles = StyleSheet.create({
 		padding: 12,
 		marginVertical: 10,
 		width: "60%",
-		borderRadius: "50%",
+		borderRadius: 50,
 		elevation: 1,
 	},
 	loginbuttonText: {
@@ -94,7 +94,6 @@ export const styles = StyleSheet.create({
 	messagingbuttonContainer: {
 		width: "30%",
 		backgroundColor: "green",
-		borderRadius: 3,
 		alignItems: "center",
 		justifyContent: "center",
 		borderRadius: 50,
