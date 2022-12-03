@@ -34,13 +34,14 @@ const Messaging = ({ route, navigation }) => {
 				? `0${new Date().getMinutes()}`
 				: `${new Date().getMinutes()}`;
 
-		if (user) {
+		if (user && message) {
 			socket.emit("newMessage", {
 				message,
 				room_id: id,
 				user,
 				timestamp: { hour, mins },
 			});
+			setMessage("")
 		}
 	};
 
@@ -82,7 +83,13 @@ const Messaging = ({ route, navigation }) => {
 			<View style={styles.messaginginputContainer}>
 				<TextInput
 					style={styles.messaginginput}
-					onChangeText={(value) => setMessage(value)}
+					onChangeText={(value) => {setMessage(value)}}
+					value={message}
+					onKeyPress={(e) => {
+						if (e.code == "Enter") {
+							handleNewMessage()
+						}
+					}}
 				/>
 				<Pressable
 					style={styles.messagingbuttonContainer}
