@@ -186,10 +186,12 @@ export const styles = StyleSheet.create({
 	},
 	messenger: {
 		display:"flex",
-		justifyContent:"center"
+		justifyContent:"center",
+		marginRight:5
 	},
 	mavatar: {
 		display:"flex",
-		justifyContent:"center"
+		justifyContent:"center",
+		marginRight:5
 	}
 });

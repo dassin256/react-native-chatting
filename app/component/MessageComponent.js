@@ -35,7 +35,7 @@ export default function MessageComponent({ item, user }) {
 						<Text>{item.text}</Text>
 					</View>
 				</View>
-					<Text>{item.time}</Text>
+				<Text style={{marginLeft:40}}>{item.time}</Text>
 			</View>
 		</View>
 	);

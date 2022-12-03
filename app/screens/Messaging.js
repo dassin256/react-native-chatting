@@ -65,6 +65,9 @@ const Messaging = ({ route, navigation }) => {
 			>
 				{chatMessages[0] ? (
 					<FlatList
+						style={{
+							flexDirection:"column-reverse"
+						}}
 						data={chatMessages}
 						renderItem={({ item }) => (
 							<MessageComponent item={item} user={user} />
