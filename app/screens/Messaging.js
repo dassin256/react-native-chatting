@@ -76,7 +76,7 @@ const Messaging = ({ route, navigation }) => {
 						keyExtractor={(item) => item.id}
 					/>
 				) : (
-					""
+					<Text></Text>
 				)}
 			</View>
 

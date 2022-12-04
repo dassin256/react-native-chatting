@@ -53,7 +53,7 @@ const Chat = () => {
 					</View>
 				)}
 			</View>
-			{visible ? <Modal setVisible={setVisible} /> : ""}
+			{visible ? <Modal setVisible={setVisible} /> : <Text></Text>}
 		</SafeAreaView>
 	);
 };
