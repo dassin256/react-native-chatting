@@ -22,17 +22,14 @@ socketIO.on("connection", (socket) => {
 	console.log(`⚡: ${socket.id} user just connected!`);
 
 	socket.on("createRoom", (name) => {
-		socket.join(name);
-		console.log(name)
 		chatRooms.unshift({ id: generateID(), name, messages: [] });
-		socket.emit("roomsList", chatRooms);
+		socketIO.emit("roomsList", chatRooms);
 	});
 
 	socket.on("findRoom", (id) => {
 		let result = chatRooms.filter((room) => room.id == id);
-		// console.log(chatRooms);
+		socket.join(result[0].name)
 		socket.emit("foundRoom", result[0].messages);
-		// console.log("Messages Form", result[0].messages);
 	});
 
 	socket.on("newMessage", (data) => {
@@ -44,13 +41,15 @@ socketIO.on("connection", (socket) => {
 			user,
 			time: `${timestamp.hour}:${timestamp.mins}`,
 		};
-		console.log("New Message", newMessage);
-		socket.to(result[0].name).emit("roomMessage", newMessage);
+
 		result[0].messages.push(newMessage);
 
 		socket.emit("roomsList", chatRooms);
+		socket.broadcast.to(result[0].name).emit("roomsList", chatRooms)
 		socket.emit("foundRoom", result[0].messages);
+		socket.broadcast.to(result[0].name).emit("foundRoom", result[0].messages)
 	});
+	
 	socket.on("disconnect", () => {
 		socket.disconnect();
 		console.log("🔥: A user disconnected");

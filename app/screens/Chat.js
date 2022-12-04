@@ -18,7 +18,7 @@ const Chat = () => {
 				.catch((err) => console.error(err));
 		}
 		fetchGroups();
-	}, [rooms]);
+	}, []);
 
 	useEffect(() => {
 		socket.on("roomsList", (rooms) => {
