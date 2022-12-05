@@ -71,7 +71,11 @@ export const styles = StyleSheet.create({
 		alignItems: "center",
 		justifyContent: "center",
 	},
-	chatemptyText: { fontWeight: "bold", fontSize: 24, paddingBottom: 30 },
+	chatemptyText: { 
+		fontWeight: "bold", 
+		fontSize: 24, 
+		paddingBottom: 30, 
+	},
 	messagingscreen: {
 		flex: 1,
 	},
@@ -85,11 +89,21 @@ export const styles = StyleSheet.create({
 		flexDirection: "row",
 	},
 	messaginginput: {
-		borderWidth: 1,
-		padding: 15,
-		flex: 1,
+		padding: 10,
+		borderRadius: 20,
+		width:"80%",
+	},
+	messageinputiconcontainer: {
+		display: "flex",
+		flexDirection : "row",
+		justifyContent: "center", 
+		alignItems: "center",
+		width: "65%",
 		marginRight: 10,
 		borderRadius: 20,
+		borderWidth: 1,
+		margin: 0,
+		padding: 0,
 	},
 	messagingbuttonContainer: {
 		width: "30%",

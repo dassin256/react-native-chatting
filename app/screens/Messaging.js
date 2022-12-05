@@ -1,16 +1,18 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
 import { View, TextInput, Text, FlatList, Pressable } from "react-native";
+import { Icon } from '@rneui/themed';
 import socket from "../utils/socket";
 import MessageComponent from "../component/MessageComponent";
 import { styles } from "../utils/styles";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import EmojiPicker from 'rn-emoji-keyboard';
 const Messaging = ({ route, navigation }) => {
 	const [user, setUser] = useState("");
 	const { name, id } = route.params;
 
 	const [chatMessages, setChatMessages] = useState([]);
 	const [message, setMessage] = useState("");
+	const [emojiModel, setEmojiModel] = useState(false)
 
 	const getUsername = async () => {
 		try {
@@ -44,6 +46,11 @@ const Messaging = ({ route, navigation }) => {
 			setMessage("")
 		}
 	};
+
+	const handleEmojiSelect = (emoji) => {
+		setMessage(message + emoji.emoji)
+	}
+
 
 	useLayoutEffect(() => {
 		navigation.setOptions({ title: name });
@@ -79,18 +86,25 @@ const Messaging = ({ route, navigation }) => {
 					<Text></Text>
 				)}
 			</View>
-
 			<View style={styles.messaginginputContainer}>
-				<TextInput
-					style={styles.messaginginput}
-					onChangeText={(value) => {setMessage(value)}}
-					value={message}
-					onKeyPress={(e) => {
-						if (e.code == "Enter") {
-							handleNewMessage()
-						}
-					}}
+				<EmojiPicker
+					onEmojiSelected={handleEmojiSelect}
+					open={emojiModel}
+					onClose={() => setEmojiModel(false)} 
 				/>
+				<View style={styles.messageinputiconcontainer}>
+					<Icon name="insert-emoticon" style={styles.insertemoji} size={20} color="#000"  onPress={() => setEmojiModel((prev) => !prev)}/>
+					<TextInput
+						style={styles.messaginginput}
+						onChangeText={(value) => {setMessage(value)}}
+						value={message}
+						onKeyPress={(e) => {
+							if (e.code == "Enter") {
+								handleNewMessage()
+							}
+						}}
+					/>
+				</View>
 				<Pressable
 					style={styles.messagingbuttonContainer}
 					onPress={handleNewMessage}

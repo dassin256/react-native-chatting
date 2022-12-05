@@ -28,8 +28,10 @@ socketIO.on("connection", (socket) => {
 
 	socket.on("findRoom", (id) => {
 		let result = chatRooms.filter((room) => room.id == id);
-		socket.join(result[0].name)
-		socket.emit("foundRoom", result[0].messages);
+		if (result) {
+			socket.join(result[0].name)
+			socket.emit("foundRoom", result[0].messages);
+		}
 	});
 
 	socket.on("newMessage", (data) => {
@@ -49,7 +51,7 @@ socketIO.on("connection", (socket) => {
 		socket.emit("foundRoom", result[0].messages);
 		socket.broadcast.to(result[0].name).emit("foundRoom", result[0].messages)
 	});
-	
+
 	socket.on("disconnect", () => {
 		socket.disconnect();
 		console.log("🔥: A user disconnected");
