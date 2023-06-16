@@ -30,9 +30,13 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
+    "@expo/dev-server": "^0.1.120",
     "@rneui/base": "^4.0.0-rc.7",
     "@rneui/themed": "^4.0.0-rc.7",
-    "webpack": "^5.75.0"
+    "webpack": "^5.75.0",
+    "webpack-dev-middleware": "^6.0.1",
+    "webpack-dev-server": "^4.11.1",
+    "webpack-hot-middleware": "^2.25.3"
   },
   "private": true
 }
